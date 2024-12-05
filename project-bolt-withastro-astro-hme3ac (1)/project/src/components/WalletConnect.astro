@@ -1,0 +1,42 @@
+---
+import { connectWallet } from '../utils/wallet';
+---
+
+<button
+  id="connect-wallet"
+  class="px-8 py-4 bg-accent text-white font-bold rounded-lg hover:bg-opacity-90 transition-all flex items-center gap-2"
+>
+  <svg 
+    class="w-5 h-5" 
+    fill="none" 
+    stroke="currentColor" 
+    viewBox="0 0 24 24"
+  >
+    <path 
+      stroke-linecap="round" 
+      stroke-linejoin="round" 
+      stroke-width="2" 
+      d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"
+    />
+  </svg>
+  Connect Wallet
+</button>
+
+<script>
+  import { connectWallet, formatAddress } from '../utils/wallet';
+
+  document.getElementById('connect-wallet')?.addEventListener('click', async () => {
+    const response = await connectWallet();
+    
+    if (response) {
+      const button = document.getElementById('connect-wallet');
+      if (button) {
+        button.textContent = formatAddress(response.publicKey.toString());
+        button.classList.add('bg-green-500');
+        button.classList.remove('bg-accent');
+      }
+    } else {
+      alert('Please install Solflare or another Solana wallet to continue');
+    }
+  });
+</script>

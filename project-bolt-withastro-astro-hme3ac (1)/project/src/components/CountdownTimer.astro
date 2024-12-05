@@ -1,0 +1,63 @@
+---
+import { animateCountdown } from '../utils/animation';
+const targetDate = new Date("2024-02-15T00:00:00").getTime();
+---
+
+<div class="countdown-container bg-primary/50 backdrop-blur-sm p-6 rounded-lg max-w-xl mx-auto" data-aos="fade-up">
+  <h3 class="text-2xl font-display font-bold text-white mb-4">Presale Starts In</h3>
+  
+  <div class="grid grid-cols-4 gap-4">
+    {['Days', 'Hours', 'Minutes', 'Seconds'].map((unit) => (
+      <div class="text-center">
+        <div class="bg-secondary p-4 rounded-lg mb-2">
+          <span class="text-3xl font-bold text-leo-gold countdown-value" data-unit={unit.toLowerCase()}>00</span>
+        </div>
+        <span class="text-sm text-gray-400">{unit}</span>
+      </div>
+    ))}
+  </div>
+</div>
+
+<script>
+  import { animateCountdown } from '../utils/animation';
+
+  function updateCountdown() {
+    const targetDate = new Date("2024-02-15T00:00:00").getTime();
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    document.querySelectorAll('.countdown-value').forEach((element) => {
+      const unit = element.getAttribute('data-unit');
+      const value = {
+        days,
+        hours,
+        minutes,
+        seconds
+      }[unit];
+      
+      if (element.textContent !== value.toString().padStart(2, '0')) {
+        element.textContent = value.toString().padStart(2, '0');
+        animateCountdown(element);
+      }
+    });
+
+    if (distance < 0) {
+      clearInterval(countdownInterval);
+      const container = document.querySelector('.countdown-container');
+      if (container) {
+        container.innerHTML = `
+          <h3 class="text-2xl font-display font-bold text-white mb-4">Presale is Live!</h3>
+          <p class="text-accent">Don't miss out on this opportunity!</p>
+        `;
+      }
+    }
+  }
+
+  const countdownInterval = setInterval(updateCountdown, 1000);
+  updateCountdown();
+</script>

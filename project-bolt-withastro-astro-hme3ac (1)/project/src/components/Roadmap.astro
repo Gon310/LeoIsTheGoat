@@ -1,0 +1,63 @@
+---
+---
+
+<section id="roadmap" class="py-20 bg-secondary">
+  <div class="container mx-auto px-4">
+    <h2 class="text-4xl font-display font-bold text-white text-center mb-16" data-aos="fade-up">
+      Roadmap
+    </h2>
+
+    <div class="max-w-4xl mx-auto">
+      <div class="relative">
+        <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-accent"></div>
+
+        {[
+          {
+            quarter: 'Q1 2024',
+            title: 'Token Launch & Presale',
+            items: ['Token Development', 'Community Building', 'Presale Launch']
+          },
+          {
+            quarter: 'Q2 2024',
+            title: 'Exchange Listings',
+            items: ['Major DEX Listings', 'CEX Listings', 'Marketing Campaign']
+          },
+          {
+            quarter: 'Q3 2024',
+            title: 'Partnerships',
+            items: ['Brand Collaborations', 'NFT Collection', 'Utility Expansion']
+          },
+          {
+            quarter: 'Q4 2024',
+            title: 'Community Growth',
+            items: ['DAO Implementation', 'Global Events', 'Platform Integration']
+          }
+        ].map((phase, index) => (
+          <div class={`relative mb-16 ${index % 2 === 0 ? 'left-timeline' : 'right-timeline'}`} data-aos="fade-up">
+            <div class="bg-primary p-6 rounded-lg shadow-xl">
+              <span class="text-leo-gold font-bold">{phase.quarter}</span>
+              <h3 class="text-xl text-white font-bold mt-2 mb-4">{phase.title}</h3>
+              <ul class="text-gray-300">
+                {phase.items.map((item) => (
+                  <li class="mb-2">• {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .left-timeline {
+    padding-right: 50%;
+    padding-left: 20px;
+  }
+
+  .right-timeline {
+    padding-left: 50%;
+    padding-right: 20px;
+  }
+</style>

@@ -1,0 +1,69 @@
+---
+import CountdownTimer from './CountdownTimer.astro';
+import WalletConnect from './WalletConnect.astro';
+---
+
+<section class="relative min-h-screen flex items-center justify-center py-20 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-primary to-secondary"></div>
+  
+  <div class="container mx-auto px-4 relative z-10">
+    <div class="text-center" data-aos="fade-up">
+      <img 
+        src="/images/leo-logo.svg" 
+        alt="LeoIsTheGOAT Logo" 
+        class="w-32 h-32 mx-auto mb-8 animate-pulse"
+      />
+      
+      <h1 class="text-5xl md:text-7xl font-display font-bold text-white mb-4">
+        LeoIsTheGOAT <span class="text-leo-gold">(LEO)</span>
+      </h1>
+      
+      <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
+        The Ultimate Meme Coin Revolution!
+      </p>
+      
+      <p class="text-lg text-gray-400 mb-12">
+        Celebrating the GOAT of football, Lionel Messi, with a cryptocurrency like no other!
+      </p>
+
+      <CountdownTimer />
+      
+      <div class="flex flex-col md:flex-row gap-6 justify-center mt-12">
+        <WalletConnect />
+        <a 
+          href="#presale" 
+          class="px-8 py-4 bg-leo-gold text-primary font-bold rounded-lg hover:bg-opacity-90 transition-all"
+        >
+          Join Presale
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 bg-accent/10 py-3">
+    <div class="marquee">
+      <span class="text-lg text-white">
+        Coming soon on Binance, Bybit, and other major platforms! 🚀
+      </span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee {
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .marquee span {
+    display: inline-block;
+    padding-left: 100%;
+    animation: marquee 20s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-100%, 0); }
+  }
+</style>
